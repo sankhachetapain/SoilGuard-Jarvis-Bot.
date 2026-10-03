@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-core-primary: #00ffcc;
+  --color-core-secondary: #0066ff;
+  --color-core-bg: #050a0f;
+  --color-core-surface: #0a1117;
+  --color-core-border: #1a2c3a;
+}
+
+@layer base {
+  body {
+    @apply bg-core-bg text-white font-sans antialiased overflow-hidden;
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(0, 255, 204, 0.05) 0%, transparent 50%),
+      linear-gradient(rgba(0, 255, 204, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 204, 0.02) 1px, transparent 1px);
+    background-size: cover, 40px 40px, 40px 40px;
+  }
+}
+
+.glow-primary {
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.3), inset 0 0 10px rgba(0, 255, 204, 0.1);
+}
+
+.text-glow {
+  text-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
+}
+
+.scanline {
+  width: 100%;
+  height: 100px;
+  z-index: 5;
+  background: linear-gradient(0deg, rgba(0, 255, 204, 0) 0%, rgba(0, 255, 204, 0.05) 50%, rgba(0, 255, 204, 0) 100%);
+  opacity: 0.1;
+  position: absolute;
+  pointer-events: none;
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.markdown-body {
+  @apply text-blue-100 font-mono text-sm leading-relaxed;
+}
+
+.markdown-body p { @apply mb-3; }
+.markdown-body strong { @apply text-core-primary font-bold; }
+
+

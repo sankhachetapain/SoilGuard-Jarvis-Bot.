@@ -1,0 +1,13 @@
+{
+  "name": "SoilGuard",
+  "description": "An intelligent agricultural assistant for soil health, crop guidance, and weather intelligence.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API",
+    "AI-powered farming advice",
+    "Real-time soil health monitoring",
+    "Localized weather insights"
+  ]
+}
