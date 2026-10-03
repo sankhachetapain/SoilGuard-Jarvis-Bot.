@@ -12,7 +12,6 @@ import {
   VolumeX, 
   RotateCcw,
   Sparkles,
-  KeyRound,
   CheckCircle2,
   AlertCircle,
   PhoneCall,
@@ -592,25 +591,6 @@ export const SoilGuardCore: React.FC = () => {
                 {isLiveMode ? "Continuous Bi-Directional Speech Uplink" : LANG_CONFIG[activeLang].subtext}
               </p>
             </div>
-          </div>
-
-          {/* Secret status pill */}
-          <div 
-            title={systemStatus.hasApiKey ? "Gemini API Key configured in Secrets panel" : "Configure GEMINI_API_KEY in Settings > Secrets"}
-            className={cn(
-              "hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono border backdrop-blur-md transition-all",
-              systemStatus.hasApiKey 
-                ? "bg-emerald-950/40 border-emerald-500/30 text-emerald-400" 
-                : "bg-amber-950/40 border-amber-500/30 text-amber-300"
-            )}
-          >
-            <KeyRound className="w-3 h-3" />
-            <span>{systemStatus.hasApiKey ? "API KEY: SECURE" : "API KEY: PENDING"}</span>
-            {systemStatus.hasApiKey ? (
-              <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-            ) : (
-              <AlertCircle className="w-3 h-3 text-amber-400 animate-pulse" />
-            )}
           </div>
         </div>
 
