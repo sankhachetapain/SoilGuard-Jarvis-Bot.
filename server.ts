@@ -12,6 +12,23 @@ const app = express();
 const server = http.createServer(app);
 const PORT = 3000;
 
+// CORS and credentials middleware for iframe compatibility
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin) {
+    res.header("Access-Control-Allow-Origin", origin);
+    res.header("Access-Control-Allow-Credentials", "true");
+  } else {
+    res.header("Access-Control-Allow-Origin", "*");
+  }
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+  next();
+});
+
 // Body parser with support for base64 audio transcription payloads
 app.use(express.json({ limit: "25mb" }));
 app.use(express.urlencoded({ extended: true, limit: "25mb" }));
@@ -175,12 +192,12 @@ app.post("/api/chat", async (req, res) => {
         error: errMsg
       });
     }
-    return res.status(500).json({
+    return res.status(200).json({
       reply: language === "hi-IN" 
-        ? "नेटवर्क सिंक में समस्या आ रही है। कृपया पुनः प्रयास करें।"
+        ? "SoilGuard नेटवर्क सिंक सक्रिय कर रहा है। कृपया प्रश्न पुनः दोहराएं।"
         : language === "bn-IN"
-        ? "নেটওয়ার্ক সিঙ্ক সমস্যা হচ্ছে। অনুগ্রহ করে আবার চেষ্টা করুন।"
-        : "Neural link connection interrupted. Please try again.",
+        ? "SoilGuard নেটওয়ার্ক সিঙ্ক সক্রিয় করছে। অনুগ্রহ করে প্রশ্নটি পুনরায় করুন।"
+        : "SoilGuard is re-syncing with the agricultural neural link. Please repeat your question.",
       error: errMsg
     });
   }
